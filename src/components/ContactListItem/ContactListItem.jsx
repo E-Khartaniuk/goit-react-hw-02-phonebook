@@ -4,6 +4,7 @@ import css from './ContactListItem.module.css';
 export default class ContactListItem extends Component {
   findIdToDeleteContact = () => {
     const { contact, deleteContact } = this.props;
+
     deleteContact(contact.id);
   };
 

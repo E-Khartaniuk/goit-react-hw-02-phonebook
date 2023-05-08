@@ -8,6 +8,7 @@ export default class ContactList extends Component {
     const updatedContacts = contacts.filter(
       contact => contact.id !== contactId
     );
+
     this.props.deleteContact(updatedContacts);
   };
 

@@ -30,9 +30,7 @@ export class PhoneBookForm extends Component {
       name: this.state.name,
       number: this.state.number,
     };
-
     this.props.addToContact(contactsData);
-
     this.setState({
       name: '',
       number: '',
