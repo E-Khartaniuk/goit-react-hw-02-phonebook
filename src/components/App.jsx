@@ -6,8 +6,6 @@ import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 import css from './styleMain/styleMaine.module.css';
 
-const MyContext = React.createContext();
-
 export class App extends Component {
   state = {
     contacts: [
