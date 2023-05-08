@@ -4,6 +4,7 @@ import { PhoneBookForm } from './phonebook/PhoneBookForm';
 // import { toHaveStyle } from '@testing-library/jest-dom/dist/matchers';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
+import css from './styleMain/styleMaine.module.css';
 
 const MyContext = React.createContext();
 
@@ -37,28 +38,17 @@ export class App extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          height: '100vh',
-
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        <h3>Phone book</h3>
+      <div className={css.conteiner}>
+        <h3 className={css.title}>Phone book</h3>
         <PhoneBookForm
           state={this.state}
           handlerChenge={this.handlerChenge}
           handlerSubmit={this.handlerSubmit}
           addToContact={this.addToContact}
         />
-        <h4>Find Contact</h4>
+        <h4 className={css.titleSecond}>Find Contact</h4>
         <Filter handlerChenge={this.handlerChenge} />
-        <h4>Contacts</h4>
+        <h4 className={css.titleSecond}>Contacts</h4>
         <ContactList
           state={this.state}
           deleteContact={this.deleteContact}

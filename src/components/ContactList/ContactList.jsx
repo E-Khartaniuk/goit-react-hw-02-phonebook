@@ -1,5 +1,6 @@
 import ContactListItem from 'components/ContactListItem/ContactListItem';
 import React, { Component } from 'react';
+import css from './ContactList.module.css';
 
 export default class ContactList extends Component {
   filterContactList = contactId => {
@@ -14,7 +15,7 @@ export default class ContactList extends Component {
     const { contacts, filter } = this.props.state;
     return (
       <div className="contactList">
-        <ul>
+        <ul className={css.contactList}>
           {contacts
             .filter(contact => {
               return contact.name.toLowerCase().includes(filter);

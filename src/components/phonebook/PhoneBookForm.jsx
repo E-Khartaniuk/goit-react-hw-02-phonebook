@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-
-import { Label } from './PhoneBookFormStyle';
+import css from './PhoneBookForm.module.css';
 
 export class PhoneBookForm extends Component {
   state = {
@@ -43,9 +42,9 @@ export class PhoneBookForm extends Component {
   render() {
     return (
       <div>
-        <form action="" onSubmit={this.handlerSubmit}>
+        <form action="" onSubmit={this.handlerSubmit} className={css.form}>
           {' '}
-          <Label htmlFor="">
+          <label htmlFor="" className={css.formLable}>
             {' '}
             Name
             <input
@@ -56,9 +55,10 @@ export class PhoneBookForm extends Component {
               required
               value={this.state.name}
               onChange={this.handlerChenge}
+              className={css.formInput}
             />
-          </Label>
-          <Label htmlFor="">
+          </label>
+          <label htmlFor="">
             Number
             <input
               type="tel"
@@ -68,9 +68,12 @@ export class PhoneBookForm extends Component {
               required
               value={this.state.number}
               onChange={this.handlerChenge}
+              className={css.formInput}
             />
-          </Label>
-          <button type="submit">Add contact</button>
+          </label>
+          <button type="submit" className={css.button}>
+            Add contact
+          </button>
         </form>
       </div>
     );
