@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+
+import { Label } from './PhoneBookFormStyle';
+
 export class PhoneBookForm extends Component {
   state = {
     name: '',
@@ -14,11 +17,11 @@ export class PhoneBookForm extends Component {
   handlerSubmit = event => {
     event.preventDefault();
 
-    const unicCintactSearch = this.props.state.contacts.some(
+    const unicContactSearch = this.props.state.contacts.some(
       contact => contact.name === this.state.name
     );
 
-    if (unicCintactSearch) {
+    if (unicContactSearch) {
       alert(`${this.state.name} is already in contacts`);
       return;
     }
@@ -30,6 +33,11 @@ export class PhoneBookForm extends Component {
     };
 
     this.props.addToContact(contactsData);
+
+    this.setState({
+      name: '',
+      number: '',
+    });
   };
 
   render() {
@@ -37,7 +45,7 @@ export class PhoneBookForm extends Component {
       <div>
         <form action="" onSubmit={this.handlerSubmit}>
           {' '}
-          <label htmlFor="">
+          <Label htmlFor="">
             {' '}
             Name
             <input
@@ -49,8 +57,8 @@ export class PhoneBookForm extends Component {
               value={this.state.name}
               onChange={this.handlerChenge}
             />
-          </label>
-          <label htmlFor="">
+          </Label>
+          <Label htmlFor="">
             Number
             <input
               type="tel"
@@ -61,7 +69,7 @@ export class PhoneBookForm extends Component {
               value={this.state.number}
               onChange={this.handlerChenge}
             />
-          </label>
+          </Label>
           <button type="submit">Add contact</button>
         </form>
       </div>

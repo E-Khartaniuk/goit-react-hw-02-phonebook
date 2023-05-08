@@ -5,6 +5,8 @@ import { PhoneBookForm } from './phonebook/PhoneBookForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 
+const MyContext = React.createContext();
+
 export class App extends Component {
   state = {
     contacts: [
@@ -27,6 +29,10 @@ export class App extends Component {
         contacts: [...prevState.contacts, contactsData],
       };
     });
+  };
+
+  deleteContact = updatedContacts => {
+    this.setState({ contacts: updatedContacts });
   };
 
   render() {
@@ -53,7 +59,10 @@ export class App extends Component {
         <h4>Find Contact</h4>
         <Filter handlerChenge={this.handlerChenge} />
         <h4>Contacts</h4>
-        <ContactList state={this.state}></ContactList>
+        <ContactList
+          state={this.state}
+          deleteContact={this.deleteContact}
+        ></ContactList>
       </div>
     );
   }
