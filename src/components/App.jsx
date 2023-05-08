@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { PhoneBookForm } from './phonebook/PhoneBookForm';
-// import { toHaveStyle } from '@testing-library/jest-dom/dist/matchers';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 import css from './styleMain/styleMaine.module.css';
@@ -22,12 +21,25 @@ export class App extends Component {
     this.setState({ [name]: value });
   };
 
-  addToContact = contactsData => {
+  addToContact = (contactsData, contactName, clearForm) => {
     this.setState(prevState => {
       return {
         contacts: [...prevState.contacts, contactsData],
       };
     });
+
+    const unicContactSearch = this.state.contacts.some(
+      contact => contact.name === contactName
+    );
+
+    if (unicContactSearch) {
+      alert(`${contactName} is already in contacts`);
+      return;
+    }
+
+    this.setState({ filter: '' });
+
+    clearForm();
   };
 
   deleteContact = updatedContacts => {
@@ -35,6 +47,7 @@ export class App extends Component {
   };
 
   render() {
+    const filterValue = this.state.filter;
     return (
       <div className={css.conteiner}>
         <h3 className={css.title}>Phone book</h3>
@@ -43,9 +56,10 @@ export class App extends Component {
           handlerChenge={this.handlerChenge}
           handlerSubmit={this.handlerSubmit}
           addToContact={this.addToContact}
+          doClean={this.doClean}
         />
         <h4 className={css.titleSecond}>Find Contact</h4>
-        <Filter handlerChenge={this.handlerChenge} />
+        <Filter handlerChenge={this.handlerChenge} filterValue={filterValue} />
         <h4 className={css.titleSecond}>Contacts</h4>
         <ContactList
           state={this.state}

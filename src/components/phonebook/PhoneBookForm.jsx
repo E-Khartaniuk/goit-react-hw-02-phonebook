@@ -13,28 +13,25 @@ export class PhoneBookForm extends Component {
     this.setState({ [name]: value });
   };
 
+  clearForm = () => {
+    this.setState({
+      name: '',
+      number: '',
+    });
+  };
+
   handlerSubmit = event => {
     event.preventDefault();
 
-    const unicContactSearch = this.props.state.contacts.some(
-      contact => contact.name === this.state.name
-    );
-
-    if (unicContactSearch) {
-      alert(`${this.state.name} is already in contacts`);
-      return;
-    }
+    const contactName = this.state.name;
 
     const contactsData = {
       id: nanoid(8),
       name: this.state.name,
       number: this.state.number,
     };
-    this.props.addToContact(contactsData);
-    this.setState({
-      name: '',
-      number: '',
-    });
+
+    this.props.addToContact(contactsData, contactName, this.clearForm);
   };
 
   render() {
