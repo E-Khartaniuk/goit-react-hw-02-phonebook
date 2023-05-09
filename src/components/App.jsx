@@ -22,12 +22,6 @@ export class App extends Component {
   };
 
   addToContact = (contactsData, contactName, clearForm) => {
-    this.setState(prevState => {
-      return {
-        contacts: [...prevState.contacts, contactsData],
-      };
-    });
-
     const unicContactSearch = this.state.contacts.some(
       contact => contact.name === contactName
     );
@@ -37,7 +31,12 @@ export class App extends Component {
       return;
     }
 
-    this.setState({ filter: '' });
+    this.setState(prevState => {
+      return {
+        contacts: [...prevState.contacts, contactsData],
+        filter: '',
+      };
+    });
 
     clearForm();
   };
@@ -56,7 +55,6 @@ export class App extends Component {
           handlerChenge={this.handlerChenge}
           handlerSubmit={this.handlerSubmit}
           addToContact={this.addToContact}
-          doClean={this.doClean}
         />
         <h4 className={css.titleSecond}>Find Contact</h4>
         <Filter handlerChenge={this.handlerChenge} filterValue={filterValue} />
